@@ -9,7 +9,6 @@ const upScroll = () => {
   });
 
   window.addEventListener("scroll", () => {
-    console.log(window.innerHeight, window.scrollY);
     scrollBtn.style.display =
       +window.innerHeight / 2 < +window.scrollY ? "block" : "none";
   });
