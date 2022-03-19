@@ -1,0 +1,1 @@
+(()=>{"use strict";((s,e)=>{const o=document.querySelector(".okna");o.classList.remove(s),o.classList.add("windows")})("okna")})();

@@ -1,0 +1,1 @@
+(()=>{"use strict";((s,e)=>{const t=document.querySelector(".kuhni");t.classList.remove(s),t.classList.add("kitchens")})("kuhni")})();

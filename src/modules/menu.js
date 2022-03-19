@@ -9,7 +9,7 @@ const menu = () => {
   };
 
   document.addEventListener("click", (e) => {
-    if (+screen.width < 992) {
+    if (+window.innerWidth < 992) {
       navbarMenu.style = "overflow-y: scroll;";
       if (e.target.closest("#navigation-fixed")) {
         e.preventDefault();
@@ -17,7 +17,7 @@ const menu = () => {
           handleMenu(navbarMenu);
         }
         if (e.target.localName === "a") {
-          scroll(e.target);
+          scroll(e.target.getAttribute("href"));
           handleMenu(navbarMenu);
         }
       }
@@ -30,7 +30,7 @@ const menu = () => {
     } else {
       if (e.target.closest("#navigation-fixed") && e.target.localName === "a") {
         e.preventDefault();
-        scroll(e.target);
+        scroll(e.target.getAttribute("href"));
       }
     }
   });
