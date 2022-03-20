@@ -8,12 +8,14 @@ const upScroll = () => {
     scroll();
   });
 
-  window.addEventListener("scroll", () => {
+  const visibleBtn = () => {
     scrollBtn.style.display =
       +window.innerHeight / 2 < +window.scrollY ? "block" : "none";
-  });
+  };
 
-  scrollBtn.style.display = "none";
+  window.addEventListener("scroll", visibleBtn);
+
+  visibleBtn();
 };
 
 export default upScroll;
