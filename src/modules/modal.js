@@ -19,7 +19,10 @@ const modal = () => {
   };
 
   document.addEventListener("click", (e) => {
-    if (e.target.closest(".button") && e.target.closest("#header")) {
+    if (
+      (e.target.closest(".button") && e.target.closest("#header")) ||
+      (e.target.closest("#navigation-fixed") && e.target.closest(".top-btn"))
+    ) {
       openModal(e, headerModal);
     }
     if (e.target.closest(".service-button")) {
