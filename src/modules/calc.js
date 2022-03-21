@@ -3,7 +3,7 @@ const calc = () => {
   const calcType = document.getElementById("calc-type");
   const calcMaterial = document.getElementById("calc-type-material");
   const calcSquare = document.getElementById("calc-input");
-  const total = document.getElementById("total");
+  const total = document.getElementById("calc-total");
 
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -11,9 +11,14 @@ const calc = () => {
       +calcMaterial.options[calcMaterial.selectedIndex].value;
 
     const calcSquareValue = calcSquare.value !== "" ? +calcSquare.value : 1;
-    let totalValue = calcSquareValue * calcMaterialValue * calcTypeValue;
-
-    total.value = totalValue;
+    let totalValue = "";
+    if (calcType.value && calcMaterial.value) {
+      totalValue = calcTypeValue * calcMaterialValue * calcSquareValue;
+    } else {
+      totalValue = "";
+    }
+    console.log(totalValue);
+    total.value = totalValue.toFixed(2);
   };
 
   calcBlock.addEventListener("input", (e) => {
