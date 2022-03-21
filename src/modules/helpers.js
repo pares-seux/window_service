@@ -9,4 +9,18 @@ const scroll = (href = "#header") => {
   target.scrollIntoView({ block: "start", behavior: "smooth" });
 };
 
-export { rename, scroll };
+const openModal = (e, modal) => {
+  const overlay = document.querySelector(".overlay");
+  e.preventDefault();
+  overlay.style.display = "block";
+  modal.style.display = "block";
+};
+
+const closeModal = (e, modal) => {
+  const overlay = document.querySelector(".overlay");
+  e.preventDefault();
+  overlay.style.display = "none";
+  modal.style.display = "none";
+};
+
+export { rename, scroll, openModal, closeModal };
