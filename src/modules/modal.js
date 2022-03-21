@@ -1,22 +1,12 @@
+import { openModal, closeModal } from "./helpers";
+
 const modal = () => {
-  const overlay = document.querySelector(".overlay");
   const headerModal = document.querySelector(".header-modal");
   const servicesModal = document.querySelector(".services-modal");
+  const statusModal = document.getElementById("responseMessage");
   let documentModal = document.createElement("div");
   documentModal.style = `display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;`;
   document.body.append(documentModal);
-
-  const openModal = (e, modal) => {
-    e.preventDefault();
-    overlay.style.display = "block";
-    modal.style.display = "block";
-  };
-
-  const closeModal = (e, modal) => {
-    e.preventDefault();
-    overlay.style.display = "none";
-    modal.style.display = "none";
-  };
 
   document.addEventListener("click", (e) => {
     if (
@@ -57,6 +47,12 @@ const modal = () => {
     ) {
       closeModal(e, documentModal);
       documentModal.innerHTML = "";
+    }
+    if (
+      e.target.classList.contains("fancyClose") ||
+      e.target.closest(".overlay")
+    ) {
+      closeModal(e, statusModal);
     }
   });
 };
