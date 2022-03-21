@@ -6,6 +6,7 @@ import timer from "/modules/timer";
 import modal from "/modules/modal";
 import regexp from "./modules/regexp";
 import sendForm from "./modules/sendForm";
+import slider from "./modules/slider";
 
 //rename("slogan", "tagline");
 navbar();
@@ -50,3 +51,4 @@ sendForm({
     },
   ],
 });
+slider("benefits", "benefits-wrap", "benefits__item", "benefits__arrow");

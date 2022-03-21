@@ -18,7 +18,7 @@ const calc = () => {
       totalValue = "";
     }
     console.log(totalValue);
-    total.value = totalValue.toFixed(2);
+    total.value = Math.round(totalValue);
   };
 
   calcBlock.addEventListener("input", (e) => {
