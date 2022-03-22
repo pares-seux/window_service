@@ -94,7 +94,6 @@ const slider = (slider, quantity = 3) => {
       (e) => {
         e.preventDefault();
         checkWidth();
-        console.log(slideWrap.children.length, width);
         if (slideWrap.children.length > width) {
           for (let i = 0; i < slideWrap.children.length - width; i++) {
             nextSlide = checkIndex(nextSlide - 1);
