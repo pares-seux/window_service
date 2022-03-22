@@ -19,6 +19,9 @@ const openModal = (e, modal) => {
 const closeModal = (e, modal) => {
   const overlay = document.querySelector(".overlay");
   e.preventDefault();
+  modal.querySelectorAll("input")?.forEach((elem) => {
+    elem.value = "";
+  });
   overlay.style.display = "none";
   modal.style.display = "none";
 };

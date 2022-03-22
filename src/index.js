@@ -51,6 +51,15 @@ sendForm({
     },
   ],
 });
+sendForm({
+  formName: "order-form",
+  someElem: [
+    {
+      type: "input",
+      id: "calc-total",
+    },
+  ],
+});
 slider(
   {
     sliderBlockId: "benefits",
