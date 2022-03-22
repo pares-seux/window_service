@@ -51,4 +51,21 @@ sendForm({
     },
   ],
 });
-slider("benefits", "benefits-wrap", "benefits__item", "benefits__arrow");
+slider(
+  {
+    sliderBlockId: "benefits",
+    slideWrapClass: "benefits-wrap",
+    slideClass: "benefits__item",
+    buttonClass: "benefits__arrow",
+  },
+  3
+);
+slider(
+  {
+    sliderBlockId: "services",
+    slideWrapClass: "",
+    slideClass: "col-md-12",
+    buttonClass: "services__arrow",
+  },
+  2
+);

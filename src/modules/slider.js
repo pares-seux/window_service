@@ -1,5 +1,5 @@
-const slider = (sliderBlockId, slideWrapClass, slideClass, buttonClass) => {
-  const sliderBlock = document.getElementById(sliderBlockId);
+const slider = (slider, quantity = 3) => {
+  const sliderBlock = document.getElementById(slider.sliderBlockId);
   let prevSlide, nextSlide, width, slides, slideWrap;
 
   const checkIndex = (index) => {
@@ -14,7 +14,7 @@ const slider = (sliderBlockId, slideWrapClass, slideClass, buttonClass) => {
 
   const checkWidth = () => {
     if (+window.innerWidth >= 576) {
-      width = 3;
+      width = quantity;
       slideWrap.style.justifyContent = "";
     } else {
       width = 1;
@@ -53,9 +53,19 @@ const slider = (sliderBlockId, slideWrapClass, slideClass, buttonClass) => {
   //   clearInterval(interval);
   // };
   const loadSlider = () => {
-    slideWrap = sliderBlock.querySelector("." + slideWrapClass);
-    slides = slideWrap.querySelectorAll("." + slideClass);
-    slideWrap.innerHTML = "";
+    if (slider.slideWrapClass === "") {
+      slideWrap = document.createElement("div");
+      slideWrap.classList.add(`${slider.sliderBlockId}-wrap`);
+      document
+        .querySelector(`.${slider.buttonClass}`)
+        .parentElement.before(slideWrap);
+    } else {
+      slideWrap = sliderBlock.querySelector("." + slider.slideWrapClass);
+    }
+    slides = sliderBlock.querySelectorAll("." + slider.slideClass);
+    slides.forEach((slide) => {
+      slide.remove();
+    });
     if (sliderBlock === null) {
       console.log("error");
       return;
@@ -72,10 +82,10 @@ const slider = (sliderBlockId, slideWrapClass, slideClass, buttonClass) => {
     sliderBlock.addEventListener("click", (e) => {
       e.preventDefault();
 
-      if (e.target.closest(`.${buttonClass}--right`)) {
+      if (e.target.closest(`.${slider.buttonClass}--right`)) {
         stepRight();
       }
-      if (e.target.closest(`.${buttonClass}--left`)) {
+      if (e.target.closest(`.${slider.buttonClass}--left`)) {
         stepLeft();
       }
     });
