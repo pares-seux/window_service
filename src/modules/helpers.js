@@ -9,16 +9,14 @@ const scroll = (href = "#header") => {
   target.scrollIntoView({ block: "start", behavior: "smooth" });
 };
 
-const openModal = (e, modal) => {
+const openModal = (modal) => {
   const overlay = document.querySelector(".overlay");
-  e.preventDefault();
   overlay.style.display = "block";
   modal.style.display = "block";
 };
 
-const closeModal = (e, modal) => {
+const closeModal = (modal) => {
   const overlay = document.querySelector(".overlay");
-  e.preventDefault();
   modal.querySelectorAll("input")?.forEach((elem) => {
     elem.value = "";
   });
