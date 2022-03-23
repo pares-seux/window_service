@@ -1,10 +1,17 @@
+import { checkIndex } from "./helpers";
+
 const comments = () => {
   const reviews = document.getElementById("reviews");
   const commentsContainer = reviews.querySelector(".comments-container");
   const colors = ["green", "grey", "orange"];
   const commentsList = [];
+  const loader = document.createElement("img");
+  loader.src = "images/loader.svg";
+  loader.style = "display: block; margin-left: auto; margin-right: auto";
 
-  let colorCounter = 0;
+  let currentComment = 0,
+    nextComment = 3,
+    colorCounter = 0;
 
   const makeTemplateLeft = (comment, specificity) => {
     const newComment = document.createElement("div");
@@ -20,6 +27,13 @@ const comments = () => {
     return newComment;
   };
 
+  const updateComments = () => {
+    commentsList[currentComment].remove();
+    currentComment = checkIndex(currentComment + 1, commentsList.length);
+    commentsContainer.append(commentsList[nextComment]);
+    nextComment = checkIndex(nextComment + 1, commentsList.length);
+  };
+
   const getData = () => {
     return fetch("./comments.json", {
       method: "GET",
@@ -28,47 +42,56 @@ const comments = () => {
 
   const loadCommentList = () => {
     commentsContainer.innerHTML = "";
-    getData().then((data) => {
-      console.log(data.comments);
-      data.comments.forEach((elem) => {
-        let param = {};
-        switch (colorCounter) {
-          case 0:
-            commentsContainer.append(
-              makeTemplateLeft(elem, {
-                margin: "review-margin-bottom",
-                color: "green",
-              })
-            );
-            break;
-          case 1:
-            commentsContainer.append(
-              makeTemplateRight(elem, {
-                margin: "review-margin-bottom",
-                color: "gray",
-              })
-            );
-            break;
-          case 2:
-            commentsContainer.append(
-              makeTemplateLeft(elem, {
-                margin: "review-margin-bottom",
-                color: "orange",
-              })
-            );
-            break;
-          case 3:
-            commentsContainer.append(
-              makeTemplateRight(elem, {
-                margin: "review-margin-bottom",
-                color: "gray",
-              })
-            );
-            break;
+    commentsContainer.append(loader);
+    getData()
+      .then((data) => {
+        data.comments.forEach((elem) => {
+          let param = {};
+          switch (colorCounter) {
+            case 0:
+              commentsList.push(
+                makeTemplateLeft(elem, {
+                  margin: "review-margin-bottom",
+                  color: "green",
+                })
+              );
+              break;
+            case 1:
+              commentsList.push(
+                makeTemplateRight(elem, {
+                  margin: "review-margin-bottom",
+                  color: "gray",
+                })
+              );
+              break;
+            case 2:
+              commentsList.push(
+                makeTemplateLeft(elem, {
+                  margin: "review-margin-bottom",
+                  color: "orange",
+                })
+              );
+              break;
+            case 3:
+              commentsList.push(
+                makeTemplateRight(elem, {
+                  margin: "review-margin-bottom",
+                  color: "gray",
+                })
+              );
+              break;
+          }
+          colorCounter = colorCounter + 1 < 4 ? colorCounter + 1 : 0;
+        });
+        loader.remove();
+        for (let i = 0; i < 3; i++) {
+          commentsContainer.append(commentsList[i]);
         }
-        colorCounter = colorCounter + 1 < 4 ? colorCounter + 1 : 0;
+        setInterval(updateComments, 20000);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    });
   };
 
   loadCommentList();

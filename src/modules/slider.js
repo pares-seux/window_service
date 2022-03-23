@@ -1,16 +1,8 @@
+import { checkIndex } from "./helpers";
+
 const slider = (slider, quantity = 3) => {
   const sliderBlock = document.getElementById(slider.sliderBlockId);
   let prevSlide, nextSlide, width, slides, slideWrap;
-
-  const checkIndex = (index) => {
-    if (index >= slides.length) {
-      return 0;
-    }
-    if (index < 0) {
-      return slides.length - 1;
-    }
-    return index;
-  };
 
   const checkWidth = () => {
     if (+window.innerWidth >= 576) {
@@ -23,17 +15,17 @@ const slider = (slider, quantity = 3) => {
   };
 
   const stepRight = () => {
-    prevSlide = checkIndex(prevSlide + 1);
+    prevSlide = checkIndex(prevSlide + 1, slides.length);
     slides[prevSlide].remove();
     slideWrap.append(slides[nextSlide]);
-    nextSlide = checkIndex(nextSlide + 1);
+    nextSlide = checkIndex(nextSlide + 1, slides.length);
   };
 
   const stepLeft = () => {
-    nextSlide = checkIndex(nextSlide - 1);
+    nextSlide = checkIndex(nextSlide - 1, slides.length);
     slides[nextSlide].remove();
     slideWrap.prepend(slides[prevSlide]);
-    prevSlide = checkIndex(prevSlide - 1);
+    prevSlide = checkIndex(prevSlide - 1, slides.length);
   };
 
   // const autoSlide = () => {
@@ -96,13 +88,13 @@ const slider = (slider, quantity = 3) => {
         checkWidth();
         if (slideWrap.children.length > width) {
           for (let i = 0; i < slideWrap.children.length - width; i++) {
-            nextSlide = checkIndex(nextSlide - 1);
+            nextSlide = checkIndex(nextSlide - 1, slides.length);
             slides[nextSlide].remove();
           }
         } else {
           for (let i = 0; i < width - slideWrap.children.length; i++) {
             slideWrap.append(slides[nextSlide]);
-            nextSlide = checkIndex(nextSlide + 1);
+            nextSlide = checkIndex(nextSlide + 1, slides.length);
           }
         }
       },
