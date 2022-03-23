@@ -36,22 +36,6 @@ const slider = (slider, quantity = 3) => {
     prevSlide = checkIndex(prevSlide - 1);
   };
 
-  // const autoSlide = () => {
-  //   prevSlide(slides, currentSlide, "portfolio-item-active");
-  //   prevSlide(dots, currentSlide, "dot-active");
-  //   currentSlide++;
-  //   if (currentSlide >= slides.length) {
-  //     currentSlide = 0;
-  //   }
-  //   nextSlide(slides, currentSlide, "portfolio-item-active");
-  //   nextSlide(dots, currentSlide, "dot-active");
-  // };
-  // const startSlide = (timer = 1500) => {
-  //   interval = setInterval(autoSlide, timer);
-  // };
-  // const stopSlide = () => {
-  //   clearInterval(interval);
-  // };
   const loadSlider = () => {
     if (slider.slideWrapClass === "") {
       slideWrap = document.createElement("div");
