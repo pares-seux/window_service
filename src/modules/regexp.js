@@ -12,7 +12,7 @@ const regexp = () => {
           e.target.classList.contains("error") ||
           e.target.classList.contains("success")
         ) {
-          let element = document.querySelector(e.target);
+          let element = document.querySelector("input[name=fio]");
           validate(element);
         }
         break;
@@ -22,7 +22,7 @@ const regexp = () => {
           e.target.classList.contains("error") ||
           e.target.classList.contains("success")
         ) {
-          let element = document.getElementById(e.target);
+          let element = document.querySelector("input[name=phone]");
           validate(element);
         }
         break;

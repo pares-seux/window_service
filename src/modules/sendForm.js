@@ -43,8 +43,10 @@ const sendForm = ({ formName, someElem = [] }) => {
     });
     someElem.forEach((elem) => {
       const element = document.getElementById(elem.id);
-      if (elem.type === "input" && element.value !== "") {
-        formBody[elem.id] = element.value;
+      if (element !== null) {
+        if (elem.type === "input" && element.value !== "") {
+          formBody[elem.id] = element.value;
+        }
       }
     });
     if (validateInputs(formElements)) {
@@ -58,6 +60,7 @@ const sendForm = ({ formName, someElem = [] }) => {
           document
             .querySelectorAll(".calc-item")
             .forEach((elem) => (elem.value = ""));
+          openModal(statusModal);
         })
         .catch((error) => {
           statusBlock.innerHTML = errorText;
@@ -74,7 +77,6 @@ const sendForm = ({ formName, someElem = [] }) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       submitForm();
-      openModal(event, statusModal);
     });
   } catch (error) {
     console.log(error.message);

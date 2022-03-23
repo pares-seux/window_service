@@ -13,31 +13,29 @@ const modal = () => {
       (e.target.closest(".button") && e.target.closest("#header")) ||
       (e.target.closest("#navigation-fixed") && e.target.closest(".top-btn"))
     ) {
-      openModal(e, headerModal);
+      e.preventDefault();
+      openModal(headerModal);
     }
     if (e.target.closest(".service-button")) {
-      openModal(e, servicesModal);
+      e.preventDefault();
+      openModal(servicesModal);
     }
     if (
       e.target.classList.contains("services-modal__close") ||
       e.target.closest(".overlay")
     ) {
-      servicesModal.querySelectorAll("input").forEach((elem) => {
-        elem.value = "";
-      });
-      closeModal(e, servicesModal);
+      e.preventDefault();
+      closeModal(servicesModal);
     }
     if (
       e.target.classList.contains("header-modal__close") ||
       e.target.closest(".overlay")
     ) {
-      headerModal.querySelectorAll("input").forEach((elem) => {
-        elem.value = "";
-      });
-      closeModal(e, headerModal);
+      e.preventDefault();
+      closeModal(headerModal);
     }
     if (e.target.closest(".sertificate-document")) {
-      openModal(e, documentModal);
+      openModal(documentModal);
       documentModal.classList.add("sertificate-document__open");
       documentModal.innerHTML = `<img src="./images/documents/original/document4.jpg" alt="document" style=" height: ${document.body.clientHeight}px;">`;
     }
@@ -45,14 +43,16 @@ const modal = () => {
       e.target.closest(".overlay") &&
       document?.querySelector(".sertificate-document__open")
     ) {
-      closeModal(e, documentModal);
+      e.preventDefault();
+      closeModal(documentModal);
       documentModal.innerHTML = "";
     }
     if (
       e.target.classList.contains("fancyClose") ||
       e.target.closest(".overlay")
     ) {
-      closeModal(e, statusModal);
+      e.preventDefault();
+      closeModal(statusModal);
     }
   });
 };

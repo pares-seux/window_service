@@ -1,5 +1,6 @@
 const validate = (element) => {
   const checkValue = () => {
+    console.log(element);
     switch (element.name) {
       case "fio":
         if (
@@ -31,6 +32,8 @@ const validate = (element) => {
           element.classList.remove("success");
           return false;
         }
+        break;
+      default:
         break;
     }
   };
