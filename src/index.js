@@ -7,7 +7,6 @@ import modal from "/modules/modal";
 import regexp from "./modules/regexp";
 import sendForm from "./modules/sendForm";
 import slider from "./modules/slider";
-import comments from "./modules/comments";
 
 //rename("slogan", "tagline");
 navbar();
@@ -79,4 +78,3 @@ slider(
   },
   2
 );
-comments();
