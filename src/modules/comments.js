@@ -29,6 +29,7 @@ const comments = () => {
   const loadCommentList = () => {
     commentsContainer.innerHTML = "";
     getData().then((data) => {
+      console.log(data.comments);
       data.comments.forEach((elem) => {
         let param = {};
         switch (colorCounter) {
@@ -51,13 +52,21 @@ const comments = () => {
           case 2:
             commentsContainer.append(
               makeTemplateLeft(elem, {
-                margin: "",
+                margin: "review-margin-bottom",
                 color: "orange",
               })
             );
             break;
+          case 3:
+            commentsContainer.append(
+              makeTemplateRight(elem, {
+                margin: "review-margin-bottom",
+                color: "gray",
+              })
+            );
+            break;
         }
-        colorCounter = colorCounter++ < 3 ? colorCounter++ : 0;
+        colorCounter = colorCounter + 1 < 4 ? colorCounter + 1 : 0;
       });
     });
   };
