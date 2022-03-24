@@ -18,7 +18,12 @@ const openModal = (modal) => {
 const closeModal = (modal) => {
   const overlay = document.querySelector(".overlay");
   modal.querySelectorAll("input")?.forEach((elem) => {
-    elem.value = "";
+    console.dir(elem.page);
+    if (elem.type !== "hidden") {
+      console.log("чистим");
+      elem.value = "";
+      elem.classList.remove("success");
+    }
   });
   overlay.style.display = "none";
   modal.style.display = "none";

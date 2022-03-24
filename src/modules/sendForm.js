@@ -35,6 +35,7 @@ const sendForm = ({ formName, someElem = [] }) => {
       "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 99999;";
 
     formData.forEach((val, key) => {
+      console.log(val, key);
       if (key !== "page" || key !== "subject") {
         formBody[key] = val;
       } else {
@@ -53,10 +54,6 @@ const sendForm = ({ formName, someElem = [] }) => {
       sendData(formBody)
         .then((data) => {
           statusBlock.innerHTML = successText;
-          formElements.forEach((input) => {
-            input.value = "";
-            input.classList.remove("success");
-          });
           document
             .querySelectorAll(".calc-item")
             .forEach((elem) => (elem.value = ""));
