@@ -24,4 +24,14 @@ const closeModal = (modal) => {
   modal.style.display = "none";
 };
 
-export { rename, scroll, openModal, closeModal };
+const checkIndex = (index, len) => {
+  if (index >= len) {
+    return 0;
+  }
+  if (index < 0) {
+    return len - 1;
+  }
+  return index;
+};
+
+export { rename, scroll, openModal, closeModal, checkIndex };
