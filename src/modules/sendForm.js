@@ -54,6 +54,12 @@ const sendForm = ({ formName, someElem = [] }) => {
       sendData(formBody)
         .then((data) => {
           statusBlock.innerHTML = successText;
+          formElements.forEach((input) => {
+            if (elem.type !== "hidden") {
+              input.value = "";
+              input.classList.remove("success");
+            }
+          });
           document
             .querySelectorAll(".calc-item")
             .forEach((elem) => (elem.value = ""));
