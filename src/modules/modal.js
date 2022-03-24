@@ -74,6 +74,9 @@ const modal = () => {
     ) {
       e.preventDefault();
       closeModal(statusModal);
+      closeModal(headerModal);
+      closeModal(orderModal);
+      closeModal(servicesModal);
     }
   });
 };

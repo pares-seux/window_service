@@ -2,11 +2,11 @@ import { validate } from "./validate";
 import { openModal } from "./helpers";
 
 const sendForm = ({ formName, someElem = [] }) => {
-  const form = document.querySelector(`form[name=${formName}]`);
   const statusModal = document.getElementById("responseMessage");
   const statusBlock = statusModal.querySelector(".modal-content");
   const errorText = "Ошибка...";
   const successText = "Спасибо! Наш менеджер с Вами свяжется!";
+  let form;
 
   const validateInputs = (list) => {
     let success = true;
@@ -32,7 +32,7 @@ const sendForm = ({ formName, someElem = [] }) => {
     const formData = new FormData(form);
     const formBody = {};
     statusModal.style =
-      "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;";
+      "position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 99999;";
 
     formData.forEach((val, key) => {
       if (key !== "page" || key !== "subject") {
@@ -69,13 +69,17 @@ const sendForm = ({ formName, someElem = [] }) => {
     }
   };
 
+  if (formName === "callback-form" || formName === "application-form") {
+    form = document.querySelectorAll(`form[name=${formName}]`)[1];
+  } else {
+    form = document.querySelector(`form[name=${formName}]`);
+  }
   try {
     if (!form) {
       throw new Error("Верните форму");
     }
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
       submitForm();
     });
   } catch (error) {
